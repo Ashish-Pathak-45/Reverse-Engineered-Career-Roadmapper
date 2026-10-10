@@ -1,0 +1,58 @@
+# ==============================================================================
+# PATHFORGE AI — Root Git Ignore Configuration
+# ==============================================================================
+
+# Node / Frontend Dependencies & Builds
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.npm/
+
+# Python Virtual Environments & Caches
+.venv/
+backend/.venv/
+env/
+venv/
+ENV/
+__pycache__/
+backend/**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment Variables & Secrets
+.env
+.env.*
+backend/.env
+frontend/.env
+!*.env.example
+
+# Local Database Backups & Temporary DB artifacts
+*.db
+*.sqlite
+*.sqlite3
+*.db.bak
+*.db-journal
+backend/*.db
+backend/*.db.bak
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary patch artifacts
+*.patch
