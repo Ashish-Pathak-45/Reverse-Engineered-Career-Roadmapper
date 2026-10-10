@@ -1,149 +1,405 @@
-Create a professional, detailed, hackathon-ready README.md for my completed project, Career Roadmapper (PATHFORGE AI).
+THFORGE AI --- Career Roadmapper
+
+Problem Statement 1: Reverse-Engineered Career Roadmapper
+
+PATHFORGE AI helps students turn a specific career goal into a
+structured learning roadmap. It brings career planning,
+prerequisite-aware roadmap visualization, skill assessment, and progress
+tracking into one experience.
+
+Live demo: https://careerroadmapper.netlify.app/
 
 GitHub repository:
 https://github.com/Ashish-Pathak-45/Reverse-Engineered-Career-Roadmapper
 
-Live website:
-https://careerroadmapper.netlify.app/
+Status note: Verify the current production backend and each UI
+flow before submission. A deployed frontend alone does not prove that
+backend-dependent features work in production.
 
-IMPORTANT:
-Inspect the actual project files before writing the README. Document what is genuinely implemented in the codebase. Do not invent features, integrations, APIs, technologies, or capabilities.
+The problem
 
-PROJECT OBJECTIVE
-Career Roadmapper helps students understand their current skills, identify skill gaps, and work toward their desired career through structured career roadmaps and skill assessments.
+Career advice is often generic. Students may know their target role but
+not which skills to learn first, which prerequisites matter, how to
+evaluate their current ability, or how to measure progress.
 
-The README should include these sections:
+PATHFORGE AI addresses Problem Statement 1 --- Reverse-Engineered
+Career Roadmapper by organizing career preparation into a more
+concrete, navigable sequence of skills and milestones.
 
-1. PROJECT TITLE
-Career Roadmapper — PATHFORGE AI
+What it does
 
-Add a short, compelling description of the project.
+PATHFORGE AI is a career-planning application intended to connect a
+student's career direction with a structured learning path. Roadmap
+dependencies show which skills should be approached first. Assessment
+functionality helps estimate proficiency and identify areas that need
+more practice.
 
-2. LIVE DEMO
-Include the deployed website:
-https://careerroadmapper.netlify.app/
+It aims to help students answer: 1. What should I learn for my target
+career? 2. What should I work on next? 3. How can I track progress and
+identify skill gaps?
 
-Include the GitHub repository:
+Key features
+
+The backend and project workspace have included the following
+capabilities. Verify each one in the submitted build and remove or
+relabel anything that is incomplete.
+
+Interactive career roadmaps: Explore skills and milestones in a
+graph-style view.
+
+Prerequisite relationships: Represent dependencies between
+roadmap skills.
+
+Progress states: Roadmap nodes can represent states such as
+available, completed, or locked, where supported by the current UI.
+
+Skill assessments: Assess understanding of selected topics.
+
+Adaptive difficulty logic: The backend assessment service
+supports Easy, Medium, and Hard difficulty transitions and is
+designed to avoid changing difficulty based on a single answer.
+
+Skill proficiency tracking: The backend data model supports
+storing attempts, correct answers, accuracy, proficiency level, and
+current difficulty.
+
+Roadmap integration: Assessment outcomes can be connected to
+roadmap skills through backend logic.
+
+Browser-based interface: The frontend is deployed at the
+live-demo URL above.
+
+Limitations to disclose
+
+Verify that the deployed frontend is connected to the intended
+production backend.
+
+Verify that assessments, saved progress, and database-backed
+features work on the public site.
+
+Do not claim that a feature uses an LLM or a particular AI model
+unless the current code actually calls it.
+
+If Success Stories or another section is incomplete or uses
+placeholder content, state that clearly.
+
+How the assessment works
+
+The backend has included an adaptive assessment service and question
+bank. The assessment design supports this flow:
+
+Select an available track or topic.
+
+Receive questions appropriate to the selected track and difficulty.
+
+Submit answers for backend evaluation.
+
+Score performance across dimensions including conceptual
+understanding, problem solving, accuracy, and consistency.
+
+Adjust difficulty between Easy, Medium, and Hard based on
+performance.
+
+Store skill-level metrics and proficiency categories.
+
+Connect assessment outcomes to roadmap skills where the integration
+is enabled.
+
+This describes the backend design. Confirm that the current frontend
+calls these endpoints and that the production backend is connected
+before describing the complete flow as verified live functionality.
+
+Done, left, and plan
+
+Update this section to match the exact commit submitted for judging.
+
+Done / implemented in the project
+
+React, TypeScript, and Vite frontend.
+
+FastAPI backend with separate API route modules.
+
+Roadmap-related data models and services.
+
+Adaptive assessment logic and a question bank.
+
+Models for roadmaps, roadmap nodes/edges, assessment results, and
+skill proficiency.
+
+Public frontend deployment at the live-demo URL.
+
+Left to verify before submission
+
+Confirm the latest source code is pushed to GitHub.
+
+Confirm the production frontend calls the deployed backend, not
+localhost.
+
+Test the main flow: open a roadmap, complete an assessment, view
+results, and refresh the page.
+
+Confirm data persists across backend restarts and redeployments.
+
+Test Success Stories and other unfinished UI areas.
+
+Check that no secrets or private configuration values are committed.
+
+Plan
+
+Prioritize reliability: verify the complete deployed student flow, test
+error handling and mobile layout, check basic accessibility, and keep
+this README aligned with the code.
+
+Architecture and why
+
+Layer                   Technology              Purpose
+
+Frontend                React 18, TypeScript,   Browser interface
+Vite
+
+Roadmap visualization   React Flow, if present  Interactive graph and
+in the current frontend dependency
+dependencies            visualization
+
+Backend API             FastAPI                 Roadmap, assessment,
+and related endpoints
+
+Runtime                 Python and Uvicorn      Run the backend API
+
+Data access             SQLAlchemy              Database models and
+persistence
+
+Validation/settings     Pydantic and Pydantic   Validate data and
+Settings                manage configuration
+
+Local database          SQLite                  Local application data
+
+flowchart TD
+    Student[Student in browser] --> UI[React + TypeScript frontend]
+    UI --> API[FastAPI backend]
+    API --> Routes[Roadmap and assessment routes]
+    Routes --> Services[Assessment engine and application services]
+    Services --> Models[SQLAlchemy models / data access]
+    Models --> DB[(SQLite database)]
+
+Separating the frontend from backend logic keeps the UI distinct from
+assessment and data handling. A graph is useful for career planning
+because it makes prerequisites easier to understand than a flat
+checklist.
+
+Production note: SQLite is convenient for local development. On a
+hosted service, ensure the database uses persistent storage or migrate
+to a managed database; an ephemeral container filesystem can lose data
+during redeploys or restarts.
+
+Project structure
+
+The backend paths below reflect the project structure previously
+inspected. Update this tree if the current repository differs.
+
+Reverse-Engineered-Career-Roadmapper/
+├── frontend/
+│   ├── package.json
+│   └── src/
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── api/
+│   │   ├── models/
+│   │   ├── services/
+│   │   └── tests/
+│   └── pathforge.db       # Local database, if present; do not commit private data
+├── .gitignore
+└── README.md
+
+frontend/: web application and frontend dependencies.
+
+backend/app/main.py: FastAPI entry point, based on the previously
+inspected structure.
+
+backend/app/api/: API route modules.
+
+backend/app/models/: database and application models.
+
+backend/app/services/: application and assessment logic.
+
+backend/app/tests/: backend tests, if present.
+
+backend/pathforge.db: local SQLite database, if present. Do not
+commit personal or private data.
+
+Run locally
+
+Prerequisites
+
+Git
+
+Node.js and npm
+
+Python 3.11 or 3.12, subject to the backend's configured version
+
+1. Clone the repository
+
+git clone https://github.com/Ashish-Pathak-45/Reverse-Engineered-Career-Roadmapper.git
+cd Reverse-Engineered-Career-Roadmapper
+
+2. Start the backend
+
+cd backend
+python -m venv .venv
+
+Activate on Windows PowerShell:
+
+.\.venv\Scripts\Activate.ps1
+
+Activate on macOS/Linux:
+
+source .venv/bin/activate
+
+Install the dependency file present in backend/. If it contains
+requirements.txt:
+
+python -m pip install -r requirements.txt
+
+If backend/app/main.py exposes app = FastAPI(...), a typical command
+from the backend/ directory is:
+
+uvicorn app.main:app --reload
+
+Check the actual entry point and configuration before relying on this
+example command.
+
+3. Start the frontend
+
+Open a second terminal:
+
+cd frontend
+npm install
+npm run dev
+
+Open the local URL printed by Vite, commonly http://localhost:5173.
+
+If the frontend uses an environment variable for its API URL, set it to
+the local backend origin using the exact variable name defined in the
+source code. Do not commit secrets.
+
+Configuration and security
+
+Keep API keys, passwords, tokens, and credentials out of source
+control.
+
+Use .env.example with placeholder values only.
+
+Configure the production frontend to use the deployed backend URL,
+not localhost.
+
+Configure backend CORS for the intended frontend origin.
+
+Do not commit .env files or a database containing personal/private
+data.
+
+Verify the actual environment-variable names in the frontend API
+client and backend settings.
+
+Example placeholder only (verify the variable name in code before using
+it):
+
+VITE_API_BASE_URL=http://127.0.0.1:8000
+
+API documentation
+
+The backend has included route groups for authentication, roadmaps,
+assessments, professionals, projects, feedback, and mentoring-related
+functionality. Confirm the current routers and prefixes in
+backend/app/main.py before relying on this list.
+
+When the backend is running, the default FastAPI documentation URLs are
+usually:
+
+Swagger UI: http://127.0.0.1:8000/docs
+
+ReDoc: http://127.0.0.1:8000/redoc
+
+These pages are available only if the application has not disabled or
+changed the default documentation routes. Inspect the route modules or
+OpenAPI page for exact methods and request schemas.
+
+Testing
+
+Run the tests available in the current checkout. If the backend uses
+pytest:
+
+python -m pytest
+
+Inspect frontend/package.json for the available scripts. A typical
+Vite production build is:
+
+npm run build
+
+Report test counts and successful results only after running the
+commands against the submitted commit.
+
+Deployment
+
+Frontend: https://careerroadmapper.netlify.app/
+
+Source repository:
 https://github.com/Ashish-Pathak-45/Reverse-Engineered-Career-Roadmapper
 
-3. THE PROBLEM
-Explain the challenges students face when choosing career paths, understanding required skills, identifying their current proficiency, and deciding what to learn next.
+Backend: Add the verified public backend URL once deployed and
+tested.
 
-4. OUR SOLUTION
-Explain how Career Roadmapper addresses these challenges. Base every claim on the actual implementation.
+For production: 1. Build the frontend using the script in
+frontend/package.json. 2. Configure its API base URL to the verified
+backend URL. 3. Configure backend CORS to allow the deployed frontend
+origin. 4. Configure persistent database storage or use a managed
+database. 5. Store secrets in the hosting provider's environment
+settings. 6. Test the main student flow, error cases, and page refresh
+on the public site.
 
-5. FEATURES
-Inspect the code and document all working features, including relevant functionality such as:
-- Career roadmaps and their visualization
-- Skill assessment and proficiency evaluation
-- Beginner, intermediate, and advanced difficulty levels, if implemented
-- Skill-gap identification and personalized recommendations, if implemented
-- Roadmap progress tracking and node statuses, if implemented
-- Learning resources, if implemented
-- Success Stories section, accurately describing its current functionality
-- Responsive interface and other meaningful implemented features
+A successful frontend deployment does not prove backend-dependent
+features are working. Verify the full browser-to-API-to-database flow.
 
-Clearly distinguish fully implemented features from incomplete features. Do not describe planned features as completed.
+Tools and AI used
 
-6. HOW THE ASSESSMENT WORKS
-Investigate the actual assessment implementation.
-Explain:
-- How questions are selected
-- How answers are evaluated
-- How proficiency is determined
-- How the system handles insufficient evidence
-- How assessment results affect skill profiles or roadmaps
+The project uses a React/TypeScript frontend and a Python/FastAPI
+backend. The backend contains adaptive assessment logic and a question
+bank.
 
-Only document behavior supported by the code. Do not claim that the system uses machine learning or an LLM unless the source code confirms it.
+Before submission, add or correct the exact AI models, external APIs,
+libraries, and AI-assisted development tools used in the current
+project. Explain how users are informed when content is AI-generated, if
+applicable. Do not claim a particular model powers a feature unless the
+code actually calls it. Adaptive rules alone do not prove that an LLM is
+used.
 
-7. TECHNICAL ARCHITECTURE
-Inspect the project and document the actual stack.
+Who it is for
 
-The project has previously been identified as using:
-- React
-- TypeScript
-- Vite
-- FastAPI
-- Python
-- SQLite for local persistence
+PATHFORGE AI is intended for college students and early-career learners
+who have a target role in mind but need help turning it into a practical
+learning sequence. It can help them plan what to study, evaluate
+proficiency, and return to a roadmap to track progress.
 
-Verify these technologies and identify the other important libraries actually used.
+Future improvements
 
-Explain how the frontend communicates with the backend and how data is stored.
+Depending on what remains incomplete, potential improvements include:
 
-Add a Mermaid architecture diagram if it accurately represents the codebase.
+Verify and strengthen the assessment-to-roadmap workflow.
 
-8. PROJECT STRUCTURE
-Show the important directories and files in the repository. Explain their purpose. Do not list nonexistent files.
+Improve recommendations using assessment evidence and explicit skill
+gaps.
 
-9. GETTING STARTED
-Provide exact, tested instructions for running the project locally:
-- Prerequisites
-- Cloning the repository
-- Installing frontend dependencies
-- Installing backend dependencies
-- Configuring environment variables
-- Starting the backend
-- Starting the frontend
-- Opening the application
+Ensure reliable persistence for profiles, results, and progress.
 
-Inspect package.json, the backend entry point, requirements files, and configuration files before writing commands. Do not guess file paths or startup commands.
+Improve mobile usability, keyboard navigation, and accessible
+labels.
 
-10. ENVIRONMENT VARIABLES
-Document every required environment variable and its purpose.
+Explain proficiency estimates and recommendations transparently.
 
-Provide an appropriate .env.example if needed. Never expose actual API keys, credentials, tokens, or secrets.
+Expand learning resources and project suggestions for each
+milestone.
 
-Explain how to configure the frontend's production API URL.
+Add end-to-end tests for the most important student journeys.
 
-11. API DOCUMENTATION
-Inspect the actual FastAPI routes and document the important endpoints, HTTP methods, and their purposes.
-
-Include assessment endpoints and roadmap-related endpoints where they exist.
-
-Explain how to access the FastAPI Swagger documentation when running locally, if enabled.
-
-12. TESTING
-Document the available test suites and exact commands to run them.
-
-Run the tests if possible and report verified results only. Never invent test counts or claim tests passed without running them.
-
-13. DEPLOYMENT
-Document the actual deployment configuration.
-
-The frontend is deployed at:
-https://careerroadmapper.netlify.app/
-
-Explain how to configure the frontend and backend for production. Verify the actual configuration before providing commands.
-
-Do not claim that the backend is publicly deployed unless its working URL has been verified.
-
-14. CURRENT LIMITATIONS AND FUTURE IMPROVEMENTS
-Honestly list incomplete features, known limitations, and realistic future improvements based on the current implementation.
-
-15. HACKATHON PROJECT SUMMARY
-End with a concise explanation of the project's impact on students and how it helps them make more informed career-development decisions.
-
-16. CONTRIBUTION AND LICENSE
-Include contribution instructions if appropriate.
-Inspect the repository for an existing license. Do not invent a license or claim that the project uses one when it does not.
-
-WRITING STYLE:
-- Professional and natural, not generic AI-generated marketing language.
-- Clear enough for students, developers, and hackathon judges.
-- Technically detailed enough that a developer can understand and run the project.
-- Use Markdown headings, tables, code blocks, and badges only where useful.
-- Keep the README organized and easy to navigate.
-- Do not include fake screenshots, fake statistics, unsupported claims, or unnecessary emojis.
-- Do not expose personal information or secrets.
-
-FINAL ACTIONS:
-1. Create or update README.md in the repository root.
-2. Verify every command, file path, endpoint, and feature description against the actual code.
-3. Review the final README for accuracy and formatting.
-4. Run any relevant validation checks.
-5. Save the completed README.md.
-6. Commit and push the README to the existing GitHub repository without overwriting unrelated changes or using force-push.
-7. Report the exact files changed, commit hash, and whether the push succeeded.
-
-Do not merely give me a suggested README in chat. Make the actual README.md file in my project.
+Built as a student-focused hackathon project for Problem Statement 1:
+Reverse-Engineered Career Roadmapper.
